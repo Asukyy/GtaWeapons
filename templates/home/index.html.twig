@@ -1,12 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}GTA Weapons Stats{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+{% endblock %}
 
 {% block body %}
 
 {% include 'partials/_header.html.twig' %}
 
-<div class="example-wrapper">
-   rien
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">GTA Weapons Stats</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% set weapons = [
+            { name: 'Pistol', description: 'Standard handgun', damage: 30, accuracy: 80, fireRate: 5 },
+            { name: 'Assault Rifle', description: 'Versatile automatic rifle', damage: 50, accuracy: 70, fireRate: 10 },
+            { name: 'Shotgun', description: 'Close-range firepower', damage: 70, accuracy: 60, fireRate: 3 },
+            { name: 'Sniper Rifle', description: 'Long-range precision rifle', damage: 90, accuracy: 90, fireRate: 1 },
+            { name: 'Submachine Gun', description: 'Compact automatic weapon', damage: 40, accuracy: 75, fireRate: 8 },
+            { name: 'Rocket Launcher', description: 'Explosive launcher', damage: 100, accuracy: 50, fireRate: 1 },
+        ] %}
+
+        {% for weapon in weapons %}
+            <div class="bg-red p-4 rounded shadow-md">
+                <h2 class="text-xl font-bold mb-2">{{ weapon.name }}</h2>
+
+                <p class="text-gray-600">{{ weapon.description }}</p>
+
+                <div class="mt-4">
+                    <p><strong>Damage:</strong> {{ weapon.damage }}</p>
+                    <p><strong>Accuracy:</strong> {{ weapon.accuracy }}</p>
+                    <p><strong>Fire Rate:</strong> {{ weapon.fireRate }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
+
 {% endblock %}
